@@ -26,13 +26,21 @@ switcher.addEventListener('change', clickHandler);
 switcher.addEventListener('change', setLocalStorage);
 document.addEventListener('DOMContentLoaded', getLocalStorageTheme);
 
+const defaultTheme = localStorage.getItem(STORAGE_KEY);
+
+if (defaultTheme === null) {
+bodyRef.classList.add(Theme.LIGHT);
+}
+else {
+bodyRef.classList.add(defaultTheme);
+}
+
 function clickHandler() {
+
     if (switcher.checked === true) {
-        bodyRef.classList.add(Theme.DARK);
-        bodyRef.classList.remove(Theme.LIGHT);
+        bodyRef.classList.replace(Theme.LIGHT, Theme.DARK);
     } else {
-        bodyRef.classList.add(Theme.LIGHT);
-        bodyRef.classList.remove(Theme.DARK);
+        bodyRef.classList.replace(Theme.DARK, Theme.LIGHT);
     }
 }
 
